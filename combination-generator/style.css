@@ -1,0 +1,115 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to right, #ff6b6b, #556270);
+    color: #000000;
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: auto;
+}
+
+h1 {
+    color: #000000;
+    margin-bottom: 30px;
+    font-size: 36px;
+}
+
+.label-container {
+    margin-bottom: 20px;
+}
+
+label {
+    display: inline-block;
+    text-align: left; 
+    width: 260px;
+    margin-right: 5px; 
+}
+
+input, button {
+    margin-top: 10px;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    background-color: #3498db;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#generateButton {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#combinations {
+    background-color: #444444;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    max-width: 600px;
+    white-space: pre-wrap;
+    overflow: auto;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    margin: 0 auto;
+    max-height: 200px;
+}
+
+#copiedMessage {
+    position: fixed;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 24px;
+    transition: top 0.5s ease;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#copyButton, #downloadButton {
+    display: none;
+    font-size: 14px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #e67e22;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+#copyButton:hover, #downloadButton:hover {
+    background-color: #d35400;
+}
+
+#generate-button{
+    margin-bottom: 20px;
+}

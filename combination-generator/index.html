@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Combination Generator</title>
+    <meta name="description" content="Generate combinations of letters and numbers based on your input.">
+    <meta name="author" content="Petar_mc">
+    <meta name="copyright" content="Petar_mc">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Combination Generator">
+    <meta property="og:url" content="http://tools.petarmc.com/combination-generator/">
+    <meta property="og:image" content="https://i.postimg.cc/zvVN2Gf3/cropped-blue-head-logo.png">
+    <meta property="og:description" content="Generate combinations of letters and numbers based on your input.">
+</head>
+<body>
+    <div class="container">
+        <h1>Combination Generator</h1>
+        <div class="label-container">
+            <label for="inputString">Enter the string of letters and numbers:</label>
+            <input type="text" id="inputString">
+        </div>
+        <div class="label-container">
+            <label for="combinationLength">Enter the length of combinations:</label>
+            <input type="text" id="combinationLength" value="1">
+        </div>
+        <button id="generateButton" onclick="generateAndShowCombinations()">Generate</button>
+        <div id="combinations"></div>
+        <div class="button-container">
+            <button id="copyButton" onclick="copyToClipboard()">Copy</button>
+            <button id="downloadButton" onclick="downloadCombinations()">Download (.txt)</button>
+        </div>
+        <div id="copiedMessage">Successfully copied text!</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

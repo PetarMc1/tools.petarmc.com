@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RGB Generator</title>
+    <meta name="description" content="Generate HEX Gradients easily">
+    <meta name="author" content="Petar_mc">
+    <meta name="copyright" content="Petar_mc">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="RGB Generator">
+    <meta property="og:url" content="http://tools.petarmc.com/rgb-generator/">
+    <meta property="og:image" content="https://i.postimg.cc/zvVN2Gf3/cropped-blue-head-logo.png">
+    <meta property="og:description" content="Generate HEX Gradients easily">
+
+  </head>
+
+  <body class="container" onload="addDefaultsFormats(); addDefaultsPresets();">
+    <div id="hexColorTemplate" style="display:none;">
+      <div class="row">
+        <label for="color-$NUM">Hex Color #$NUM</label>
+        <input class="form-control col-md-1 hexColor" id="color-$NUM" style="border-radius: 10px;" value="$VAL"
+               data-jscolor="{preset:'small dark', position:'right'}" oninput="javascript: updateOutputText(event)"
+               onchange="javascript: updateOutputText(event); Cookies.set(`#${$NUM}`, document.getElementById('color-$NUM').value, { expires: 7, path: '' })"/>
+      </div>
+    </div>
+    
+    <div id="content">
+      <h1 id="title">HEX Generator</h1>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-2" style="padding-left: 0;">
+            <p style="text-align: center;font-weight: bold;font-size: 1px;margin-bottom: 0px;"></a><div style="display:inline-flex;">
+            </div>
+            <div id="hexColors" class="container-fluid">
+            </div>
+          </div>
+          <div class="col-md-10" style="padding-right: 0;">
+            <div class="container-fluid">
+              <div class="row">
+                <div id="output">
+                  <label id="graylabel2" class="gray" for="outputText" style="font-weight: bold;">Click below to copy the content with RGB!</label>
+                  <pre id="outputText" 
+                    onclick="copyTextToClipboard(this.textContent);"></pre>
+                  <span id="snackbar"><b>You copied the text</b></span>
+                </div>
+              </div>
+              <div class="row">
+                <div id="coloredNick"></div>
+              </div>
+              
+              <p id="error">This message contains more than 256 characters and might not fit in your chat box.</p>
+              <div class="row">
+                <div class="col-md-3" style="padding-left: 0;">
+                  <label for="nickname">Message</label>
+                  <input class="form-control" id="nickname" type="text" maxlength="200" placeholder="Type your text"
+                         value="" oninput="javascript: updateOutputText(event);"
+                         onchange="javascript: updateOutputText(event)">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3" style="padding-left: 0;" id="minecraft">
+                  <label for="output-format">Output format</label>
+                  <select id="output-format"
+                          class="form-control"
+                          onmouseenter="showOutPutFormatTooltip();"
+                          onmouseout="hideOutPutFormatTooltip();"
+                          onload="addDefaultsFormats();" onchange="updateOutputText(event);">
+                  </select>
+                  <div id="output-format-tooltip" style="width: max-content; height: fit-content; position: absolute; display: none;z-index: 1" class="form-control">Loading..</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3" style="padding-left: 0;">
+                  <label for="color-preset">Presets colors</label>
+                  <select id="color-preset"
+                          class="form-control"
+                          onload="addDefaultsPresets();"
+                          onchange="preset(this.value); updateOutputText(event); ">
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <label for="numOfColors">Amount of colors</label>
+                <input class="form-control"
+                       style="width: 75px;"
+                       value="2" id="numOfColors" type="number" min="2" max="20"
+                       onchange="updateOutputText(event); toggleColors(this.value);"
+                       oninput="updateOutputText(event); toggleColors(this.value);"/>
+              </div>
+              <div class="row">
+                <div id="dbold">
+                  <input type="checkbox" id="bold" onclick="updateOutputText(event);"/>
+                  <label for="bold">Bold</label>
+                </div>
+                <div id="ditalics">
+                  <input type="checkbox" id="italics" onclick="updateOutputText(event);"/>
+                  <label for="italics">Italic</label>
+                </div>
+                <div id="dunderline">
+                  <input type="checkbox" id="underline" onclick="updateOutputText(event);"/>
+                  <label for="underline">Underline</label>
+                </div>
+                <div id="dstrike">
+                  <input type="checkbox" id="strike" onclick="updateOutputText(event);"/>
+                  <label for="strike">Strikethrough</label>
+                </div>
+                <div id="appearance">
+                  <input type="checkbox" id="darkmode" onclick="darkMode();"></input>
+                  <label for="darkmode" style="margin-bottom: 0px;margin-top: 0px;"> Dark Mode</label>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer>
+      <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/PetarMc1/rgb-generator">RGB Generator</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/PetarMc1">Petar_mc</a> is licensed under <a href="https://creativecommons.org/licenses/by-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1"></a></p>
+      <p style="text-align: left;">If there is a bug with the generator, please create an <a href="https://github.com/PetarMc1/rgb-generator/issues" target="_blank">issue</a>.</p>
+  </footer>
+  </body>
+  <script src="jscolor.js"></script>
+  <script src="script.js"></script>
+</html>

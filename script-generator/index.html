@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minecraft Server Start Script Generator</title>
+  <meta name="author" content="Petar_mc">
+  <meta name="copyright" content="Petar_mc">
+  <meta name="robots" content="index, follow">
+
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Minecraft Server Start Script Generator">
+  <meta property="og:url" content="http://tools.petarmc.com/script-generator/">
+  <meta property="og:image" content="https://i.postimg.cc/zvVN2Gf3/cropped-blue-head-logo.png">
+
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="server-config-container">
+    <h2>Server Start Script Generator</h2><p> Better generator <a href="https://docs.papermc.io/misc/tools/start-script-gen" style="color: red;">here</a></p>
+    <br>
+    <br>
+    <div class="config-section">
+      <label for="memory-slider">Memory Usage: <span id="memory-value">4</span>GB</label>
+      <input id="memory-slider" type="range" min="0.5" max="24" step="0.5" value="4">
+    </div>
+    <div class="config-section">
+      <label for="filename-input">Filename:</label>
+      <input id="filename-input" type="text" value="server.jar">
+    </div>
+    <div class="config-section">
+      <label for="flags-dropdown">Flags:</label>
+      <div class="custom-dropdown">
+        <div id="selected-flag" class="selected-flag">None</div>
+        <div id="dropdown-content" class="dropdown-content"></div>
+      </div>
+    </div>
+    <div class="config-section">
+      <div class="gui-container">
+        <label for="gui-toggle">GUI:</label>
+        <label class="switch">
+          <input type="checkbox" id="gui-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="platform-selector">
+        <label for="platform-select">Platform:</label>
+        <select id="platform-select">
+          <option value="windows">Windows</option>
+          <option value="linux">Linux/Mac</option>
+        </select>
+      </div>
+    </div>
+    <div class="config-section">
+      <label for="output-command-text">Generated Command:</label>
+      <textarea id="output-command-text" class="output-command" readonly></textarea>
+    </div>
+    <div class="copy-button">
+      <button id="clipboard-copy-button">Copy to Clipboard</button>
+      <button id="contents-download-button">
+        <span id="download-button-label">Download (.sh)</span>
+      </button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

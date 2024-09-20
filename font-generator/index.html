@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Font Generator</title>
+    <meta name="description" content="Create texts with unique fonts for your Minecraft chat, scoreboard, tab, titles, actionbar and holograms.">
+    <meta name="author" content="Petar_mc">
+    <meta name="copyright" content="Petar_mc">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Font Generator">
+    <meta property="og:url" content="http://tools.petarmc.com/font-generator/">
+    <meta property="og:image" content="https://i.postimg.cc/zvVN2Gf3/cropped-blue-head-logo.png">
+    <meta property="og:description" content="Create texts with unique fonts for your Minecraft chat, scoreboard, tab, titles, actionbar, and holograms.">
+  </head>
+  <body onload="loadCounter(); ">
+    <div class="content">
+      <div class="header">
+        <h1 style="font-family: MinecraftBold;">Font Generator</h1>
+        
+        <span id="snackbar"><b>You copied the text</span>
+        <textarea id="inputText" style="text-align: center; display: inline-block; width: 50%;font-family: MinecraftBold;padding: 5px 5px 5px 5px;"
+          type="text" maxlength="5000" checked id="darkmode" value="Font Generator" class="darkbuttonboxes" oninput="updateOutput(this)" 
+          placeholder="Type your text"></textarea>
+        <br>
+        <br>
+        <fieldset class="group" style="padding: 0px;"> 
+          <legend id="thelegend">&nbsp;&nbsp;&nbsp;Click a box to copy the text in it.&nbsp;&nbsp;&nbsp;</legend> 
+          <ul id="fonts-table" style="font-size: 18px;">
+            Loading..
+          </ul> 
+        </fieldset>
+      </div>
+  </div>
+
+    <footer>
+      <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/PetarMc1/font-generator">Font Generator</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/PetarMc1">Petar_mc</a> is licensed under <a href="https://creativecommons.org/licenses/by-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1"></a></p>
+    </footer>
+
+  <script src="script.js"></script>
+  
+  <script>
+    
+  </script>
+  </body>
+</html>
