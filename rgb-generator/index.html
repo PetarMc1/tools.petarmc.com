@@ -10,7 +10,6 @@
     <title>RGB Generator</title>
     <meta name="description" content="Generate HEX Gradients easily">
     <meta name="author" content="Petar_mc">
-    <meta name="copyright" content="Petar_mc">
     <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="website">
@@ -24,7 +23,7 @@
   <body class="container" onload="addDefaultsFormats(); addDefaultsPresets();">
     <div id="hexColorTemplate" style="display:none;">
       <div class="row">
-        <label for="color-$NUM">Hex Color #$NUM</label>
+        <label for="color-$NUM">Hex Color $NUM</label>
         <input class="form-control col-md-1 hexColor" id="color-$NUM" style="border-radius: 10px;" value="$VAL"
                data-jscolor="{preset:'small dark', position:'right'}" oninput="javascript: updateOutputText(event)"
                onchange="javascript: updateOutputText(event); Cookies.set(`#${$NUM}`, document.getElementById('color-$NUM').value, { expires: 7, path: '' })"/>
@@ -32,7 +31,7 @@
     </div>
     
     <div id="content">
-      <h1 id="title">HEX Generator</h1>
+      <h1 id="title">RGB Generator</h1>
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-2" style="padding-left: 0;">
@@ -45,20 +44,20 @@
             <div class="container-fluid">
               <div class="row">
                 <div id="output">
-                  <label id="graylabel2" class="gray" for="outputText" style="font-weight: bold;">Click below to copy the content with RGB!</label>
+                  <label id="graylabel2" class="gray" for="outputText" style="font-weight: bold;">Click down to copy the RGB text!</label>
                   <pre id="outputText" 
                     onclick="copyTextToClipboard(this.textContent);"></pre>
-                  <span id="snackbar"><b>You copied the text</b></span>
+                  <span id="snackbar"><b>Copy successful</b></span>
                 </div>
               </div>
               <div class="row">
                 <div id="coloredNick"></div>
               </div>
               
-              <p id="error">This message contains more than 256 characters and might not fit in your chat box.</p>
+              <p id="error">This message is MORE than 256 characters and wont fit in your chat!</p>
               <div class="row">
                 <div class="col-md-3" style="padding-left: 0;">
-                  <label for="nickname">Message</label>
+                  <label for="nickname">Text</label>
                   <input class="form-control" id="nickname" type="text" maxlength="200" placeholder="Type your text"
                          value="" oninput="javascript: updateOutputText(event);"
                          onchange="javascript: updateOutputText(event)">
@@ -87,7 +86,7 @@
                 </div>
               </div>
               <div class="row">
-                <label for="numOfColors">Amount of colors</label>
+                <label for="numOfColors">Number of colors</label>
                 <input class="form-control"
                        style="width: 75px;"
                        value="2" id="numOfColors" type="number" min="2" max="20"

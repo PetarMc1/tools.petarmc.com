@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Barcode Generator</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Barcode Generator</h1>
+
+        <div class="input-group">
+            <label for="text-input">Barcode Text</label>
+            <input type="text" id="text-input" placeholder="Enter text for barcode" required>
+        </div>
+
+        <div class="input-group">
+            <label for="size-slider">Barcode Size (Width in px)</label>
+            <input type="number" id="size-slider" min="100" max="600" value="256">
+        </div>
+
+        <button id="generate-btn">Generate Barcode</button>
+        <button id="download-btn">Download as</button>
+        <select id="download-format">
+            <option value="png">PNG</option>
+            <option value="jpg">JPG</option>
+            <option value="svg">SVG</option>
+            <option value="webp">WEBP</option>
+        </select>
+
+        <canvas id="barcode" width="256" height="256"></canvas>
+    </div>
+
+    <div class="fullscreen" id="fullscreen" style="display: none;">
+        <button class="close-button" id="close-fullscreen">X</button>
+        <img id="fullscreen-image" src="" alt="Barcode Fullscreen">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

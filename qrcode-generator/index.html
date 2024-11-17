@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+
+        <div class="template-switch">
+            <button class="template-button active" data-template="custom">Custom</button>
+            <button class="template-button" data-template="link">Link</button>
+            <button class="template-button" data-template="email">Email</button>
+            <button class="template-button" data-template="phone">Phone Number</button>
+            <button class="template-button" data-template="contact">Contact</button>
+        </div>
+
+        <div class="input-group" id="normal-input">
+            <label for="text-input">QR Code Text</label>
+            <input type="text" id="text-input" placeholder="Enter text for QR code">
+        </div>
+
+        <div class="input-group" id="link-input" style="display: none;">
+            <label for="link-url">Link URL</label>
+            <input type="text" id="link-url" placeholder="Enter link">
+        </div>
+
+        <div class="input-group" id="phone-input" style="display: none;">
+            <label for="phone-number">Phone Number</label>
+            <input type="text" id="phone-number" placeholder="Enter phone number">
+        </div>
+
+        <div class="input-group" id="email-input" style="display: none;">
+            <label for="email">Email</label>
+            <input type="text" id="email" placeholder="Enter email">
+        </div>
+
+        <!-- Advanced Contact Input -->
+        <div class="input-group" id="contact-input" style="display: none;">
+            <label for="contact-name">Contact Name</label>
+            <input type="text" id="contact-name" placeholder="Enter contact name">
+
+            <label for="contact-phone">Phone Number</label>
+            <input type="text" id="contact-phone" placeholder="Enter phone number">
+
+            <label for="contact-email">Email</label>
+            <input type="text" id="contact-email" placeholder="Enter email address">
+
+            <label for="contact-org">Organization</label>
+            <input type="text" id="contact-org" placeholder="Enter organization">
+
+            <label for="contact-address">Address</label>
+            <input type="text" id="contact-address" placeholder="Enter address">
+        </div>
+
+        <button id="toggle-options">Show Advanced Options</button>
+
+        <div class="optional-settings" id="optional-settings">
+            <div class="input-group">
+                <label for="foreground-color">Foreground Color</label>
+                <input type="color" id="foreground-color" value="#000000">
+            </div>
+
+            <div class="input-group">
+                <label for="background-color">Background Color</label>
+                <input type="color" id="background-color" value="#ffffff">
+            </div>
+
+            <div class="input-group">
+                <label for="error-level">Error Correction Level</label>
+                <select id="error-level">
+                    <option value="L">Low</option>
+                    <option value="M">Medium</option>
+                    <option value="Q">Quartile</option>
+                    <option value="H">High</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="size-slider">QR Code Size</label>
+                <input type="range" id="size-slider" class="slider" min="100" max="600" value="256">
+                <span id="size-value">256</span> px
+            </div>
+        </div>
+
+        <button id="generate-btn">Generate QR Code</button>
+        <button id="download-btn">Download</button>
+        <select id="download-format">
+            <option value="png">PNG</option>
+            <option value="jpg">JPG</option>
+        </select>
+
+        <canvas id="qrcode" width="256" height="256"></canvas>
+    </div>
+
+    <div class="fullscreen" id="fullscreen" style="display: none;">
+        <button class="close-button" id="close-fullscreen">X</button>
+        <img id="fullscreen-image" src="" alt="QR Code Fullscreen">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

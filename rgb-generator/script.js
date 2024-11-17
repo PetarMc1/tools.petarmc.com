@@ -1,6 +1,5 @@
 let mode = 1;
 const nickName = document.getElementById('nickname');
-const coloredNick = document.getElementById('coloredNick');
 const savedColors = ['00ff00', '00ffff'];
 const presets = {
   0: {
@@ -70,52 +69,7 @@ const formats = {
     formatChar: '&',
     maxLength: 256,
   },
-  a2: {
-    name: 'Legacy &x&r&r&g&g&b&b',
-    outputPrefix: '',
-    template: '&x&$1&$2&$3&$4&$5&$6$f$c',
-    formatChar: '&',
-    maxLength: 256
-  },
-  a3: {
-    name: '',
-    outputPrefix: '/nick ',
-    template: '&x&$1&$2&$3&$4&$5&$6$f$c',
-    formatChar: '&',
-    maxLength: 256
-  },
-  a4: {
-    name: 'Console §x§r§r§g§g§b§b',
-    outputPrefix: '',
-    template: '§x§$1§$2§$3§$4§$5§$6$f$c',
-    formatChar: '§',
-    maxLength: null,
-  }
 };
-let emojis_to_use_as_replacement = []
-let double_emojis = []
-let emoji_array = []
-setTimeout(async ()=>{
-  removeDuplicatedEmojis();
-},1000);
-function removeDuplicatedEmojis() {;
-  emoji_array = Array.from(new Set(emoji_array));
-  double_emojis = emoji_array.filter(e=>e.length > 1);
-  emojis_to_use_as_replacement = emoji_array.filter(e=>e.length == 1);
-}
-function addText(emoji) {
-  if(mode == 1){
-    let input = document.getElementById('nickname');
-    input.value = input.value + emoji.value;
-  }else if(mode == 2) {
-    let input = document.getElementById('lore-input');
-    input.value = input.value + emoji.value;
-  }else if(mode == 3){
-    let input = document.getElementById('motd-input');
-    input.value = input.value + emoji.value;
-  }
-  updateOutputText(undefined);
-}
 
 let toReplace = ["left-permute","right-permute"]
 function darkMode() {
@@ -123,7 +77,6 @@ function darkMode() {
     document.body.classList.add('dark');
     document.getElementById('color-preset').classList.add("dark");
     document.getElementById('numOfColors').classList.add("dark");
-    document.getElementById('graylabel2').classList.replace("gray", "darkgray");
     document.getElementById('output-format-tooltip').classList.replace("gray", "darkgray");
     document.getElementById('error').classList.replace("errortext", "darkerrortext");
     document.getElementById('numOfColors').classList.add("darktextboxes");
@@ -142,7 +95,6 @@ function darkMode() {
     document.getElementById('output-format').classList.remove("dark");
     document.getElementById('color-preset').classList.remove("dark");
     document.getElementById('numOfColors').classList.remove("dark");
-    document.getElementById('graylabel2').classList.replace("darkgray", "gray");
     document.getElementById('outputText').classList.replace("darkgray", "gray");
     document.getElementById('output-format-tooltip').classList.replace("darkgray", "gray");
     document.getElementById('error').classList.replace("darkerrortext", "errortext");
@@ -250,12 +202,7 @@ function addDefaultsPresets() {
 }
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 const numbers = "0123456789";
-const fonts = {
-  "normal": {
-    "name": "Normal",
-    "default": true
-  }
-}
+
 function showOutPutFormatTooltip() {
   let tooltip = document.getElementById("output-format-tooltip");
   if(tooltip) {
@@ -404,9 +351,6 @@ function getColors() {
   });
   return colors;
 }
-function updateOutputTextFromFont(event) {
-  updateOutputText(event, false);
-}
 function updateOutputText(event) {
   updateOutputText(event, false);
 }
@@ -420,24 +364,9 @@ function fixReplacements(text) {
 }
 function addReplacements(text) {
   replacements.clear();
-  for(let e of double_emojis) {
-    if(text.includes(e)) {
-      let randomEmoji = getRandomEmoji(text);
-      replacements.set(randomEmoji,e)
-      text = text.replaceAll(e,randomEmoji);
-    }
-  }
   return text;
 }
-let beta = false;
-let developer = false;
-function getRandomEmoji(text) {
-  let random = emojis_to_use_as_replacement[Math.floor(Math.random() * emojis_to_use_as_replacement.length)]
-  if(replacements.has(random) || text.includes(random)) {
-    return getRandomEmoji(text);
-  }
-  return random;
-}
+
 function s(){
   let c = v.split("-").filter(s=>s.match(/[a-fA-F0-9]{6}/g));
   if(c.length >= 2) {
@@ -472,8 +401,9 @@ function updateOutputText(event, setFormat) {
   const bold = document.getElementById('bold').checked;
   const italic = document.getElementById('italics').checked;
   const underline = document.getElementById('underline').checked;
-  const strike = document.getElementById('strike').checked;
+  const strikethrough = document.getElementById('strike').checked;
 
+  
   let outputText = document.getElementById('outputText');
   let colorsList = getColors();
   if(mode == 1){
@@ -536,7 +466,7 @@ function updateOutputText(event, setFormat) {
         if (bold) formatCodes += format.formatChar + 'l';
         if (italic) formatCodes += format.formatChar + 'o';
         if (underline) formatCodes += format.formatChar + 'n';
-        if (strike) formatCodes += format.formatChar + 'm';
+        if (strikethrough) formatCodes += format.formatChar + 'm';
       }
       hexOutput = hexOutput.replace('$f', formatCodes);
       hexOutput = hexOutput.replace('$c', char);
@@ -559,7 +489,7 @@ function updateOutputText(event, setFormat) {
       if (bold) effects += '<b>';
       if (italic) effects += '<i>';
       if (underline) effects += '<u>';
-      if (strike) effects += '<st>';
+      if (strikethrough) effects += '<st>';
       if(colorsList.length == 1) {
         outputText.innerText = `<${convertToHex(colorsList[0])}>${effects}${newNick}`
       }else{
@@ -570,135 +500,6 @@ function updateOutputText(event, setFormat) {
     }
     showError(format.maxLength != null && format.maxLength < output.length);
     displayColoredName(beforeFixedNewNick, charColors, format);
-  }else if(mode == 2) {
-    let loreLines = loreInput.value.split("\n");
-    if(loreInput.value.replace(/\n/g,"").trim().length == 0) loreLines = [`Type something!`];
-
-    if(document.getElementById('fonts-list')) {
-      if(document.getElementById('fonts-list').value) {
-        let fontData = fonts[document.getElementById('fonts-list').value];
-        if(fontData){
-          if(!fontData.default) {
-            let loretoModify = loreLines.concat();
-            loreLines = [];
-            for(let line of loretoModify) {
-              let toModify = line;
-              let newLine = "";
-              if(typeof fontData.before != "undefined") {
-                toModify = fontData.before(toModify);
-              }
-              let processed = fontData.processed;
-              for (let i = 0; i < toModify.length; i++) {
-                newLine += processed[toModify[i]] || toModify[i];
-              }
-              if(typeof fontData.after != "undefined") {
-                newLine = fontData.after(newLine);
-              }
-              loreLines.push(newLine);
-            }
-          }
-        }
-      }
-    }
-    if(event) {
-      if(typeof event.style !== "undefined") {
-        event.style.height = "1px";
-        event.style.height = ((event.scrollHeight)+2)+"px";
-      }
-    }
-
-    let finalOutput = [];
-    let finalBeforeReplacement = [];
-
-    loreText.classList.remove('minecraftbold', 'minecraftibold', 'minecraftitalic');
-    if(!format.iridiumGradient) {
-      if (document.getElementById('bold').checked) {
-        if (document.getElementById('italics').checked) {
-          loreText.classList.add('minecraftibold');
-        } else {
-          loreText.classList.add('minecraftbold');
-        }
-      } else if (document.getElementById('italics').checked) {
-        loreText.classList.add('minecraftitalic');
-      }
-    }
-    loreText.innerHTML = '';
-    
-    for(let line of loreLines) {
-      line = addReplacements(line);
-      let gradient;
-
-      let chars = line.replace(/ /g, '');
-    
-      if (format.iridiumGradient) {
-        let newColorList = [colorsList[0],colorsList[colorsList.length - 1]]
-        gradient = new Gradient(newColorList, chars.length);
-      }else{
-        gradient = new Gradient(colorsList, chars.length);
-      }
-      let charColors = [];
-      let output = format.outputPrefix;
-      
-      let startIridium;
-      let endIridium;
-      for (let i = 0; i < line.length; i++) {
-        let char = line.charAt(i);
-        if (char == ' ') {
-          output += char;
-          charColors.push(null);
-          continue;
-        }
-        
-    
-        let hex = convertToHex(gradient.next());
-        charColors.push(hex);
-        let hexOutput = format.template;
-        for (let n = 1; n <= 6; n++)
-          hexOutput = hexOutput.replace(`$${n}`, hex.charAt(n - 1));
-        let formatCodes = '';
-        if (format.formatChar != null) {
-          if (bold) formatCodes += format.formatChar + 'l';
-          if (italic) formatCodes += format.formatChar + 'o';
-          if (underline) formatCodes += format.formatChar + 'n';
-          if (strike) formatCodes += format.formatChar + 'm';
-        }
-        hexOutput = hexOutput.replace('$f', formatCodes);
-        hexOutput = hexOutput.replace('$c', char);
-        if(i == 0) {
-          startIridium = hexOutput.slice(2,8);
-        }else if((i + 1) == line.length) {
-          endIridium = hexOutput.slice(2,8);
-        }
-        output += hexOutput;
-      }
-    
-      output = fixReplacements(output);
-      let beforeFixedNewNick = line + "";
-      finalBeforeReplacement.push([beforeFixedNewNick,charColors]);
-      line = fixReplacements(line);
-    
-      if (format.iridiumGradient) {
-        finalOutput.push(`<GRADIENT:${startIridium}>${line}</GRADIENT:${endIridium}>`);
-      }else if (format.adventureGradient) {
-        let effects = "";
-        if (bold) effects += '<b>';
-        if (italic) effects += '<i>';
-        if (underline) effects += '<u>';
-        if (strike) effects += '<st>';
-        if(colorsList.length == 1) {
-          finalOutput.push(`<${convertToHex(colorsList[0])}>${effects}${line}`)
-        }else{
-          finalOutput.push(`<gradient:${colorsList.map(c=>`#${convertToHex(c)}`).join(":")}>${effects}${line}</gradient>`)
-        }
-      }else{
-        finalOutput.push(output);
-      }
-    }
-    addDisplayColoredLore(finalBeforeReplacement, format);
-    outputText.innerText = finalOutput.join("\r\n");
-  }else if(mode == 3) {
-    let motdLines = motdInput.value.split("\n");
-    if(motdInput.value.replace(/\n/g,"").trim().length == 0) motdLines = [`Type something!`,`Choose your MOTD!`];
     if(document.getElementById('fonts-list')) {
       if(document.getElementById('fonts-list').value) {
         let fontData = fonts[document.getElementById('fonts-list').value];
@@ -734,19 +535,6 @@ function updateOutputText(event, setFormat) {
     let finalOutput = [];
     let finalBeforeReplacement = [];
 
-    coloredMOTD.classList.remove('minecraftbold', 'minecraftibold', 'minecraftitalic');
-    if(!format.iridiumGradient) {
-      if (document.getElementById('bold').checked) {
-        if (document.getElementById('italics').checked) {
-          coloredMOTD.classList.add('minecraftibold');
-        } else {
-          coloredMOTD.classList.add('minecraftbold');
-        }
-      } else if (document.getElementById('italics').checked) {
-        coloredMOTD.classList.add('minecraftitalic');
-      }
-    }
-    coloredMOTD.innerHTML = '';
     
     for(let line of motdLines) {
       line = addReplacements(line);
@@ -784,7 +572,7 @@ function updateOutputText(event, setFormat) {
           if (bold) formatCodes += format.formatChar + 'l';
           if (italic) formatCodes += format.formatChar + 'o';
           if (underline) formatCodes += format.formatChar + 'n';
-          if (strike) formatCodes += format.formatChar + 'm';
+          if (strikethrough) formatCodes += format.formatChar + 'm';
         }
         hexOutput = hexOutput.replace('$f', formatCodes);
         hexOutput = hexOutput.replace('$c', char);
@@ -808,7 +596,7 @@ function updateOutputText(event, setFormat) {
         if (bold) effects += '<b>';
         if (italic) effects += '<i>';
         if (underline) effects += '<u>';
-        if (strike) effects += '<st>';
+        if (strikethrough) effects += '<st>';
         if(colorsList.length == 1) {
           finalOutput.push(`<${convertToHex(colorsList[0])}>${effects}${line}`)
         }else{
@@ -870,7 +658,6 @@ function preset(n) {
   if(!colors || colors.length < 2) return;
   const container = $('#hexColors');
   container.empty();
-    // Need to add some colors
     let template = $('#hexColorTemplate').html();
     for (let i = 0 + 1; i <= colors.length; i++) {
       let html = template.replace(/\$NUM/g, i).replace(/\$VAL/g, colors[i - 1]);
@@ -908,4 +695,4 @@ function alertCopied() {
 toggleColors(2);
 document.getElementById('darkmode').checked = true
 darkMode();
-updateOutputText(event)
+updateOutputText()

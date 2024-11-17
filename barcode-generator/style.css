@@ -1,0 +1,117 @@
+body {
+    background-color: #1a1a1a; /* Very dark background color */
+    color: #ffffff; /* White text for high contrast */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    background-color: #333333; /* Dark gray container */
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #ffcc00; /* Bright yellow for the heading */
+    text-align: center;
+    font-weight: 700;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #cccccc; /* Light gray for labels */
+    font-weight: bold;
+}
+
+input, button, select {
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #555555; /* Medium gray border */
+    outline: none;
+    transition: all 0.3s ease;
+    width: 100%;
+    background-color: #444444; /* Darker background for inputs */
+    color: #ffffff; /* White text for inputs */
+}
+
+input:focus, select:focus {
+    border-color: #ffcc00; /* Yellow border on focus */
+}
+
+button {
+    background-color: #ffcc00; /* Button color */
+    color: #1a1a1a; /* Dark text for buttons */
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: none; /* No border for buttons */
+}
+
+button:hover {
+    background-color: #e6b800; /* Darker yellow on hover */
+    transform: translateY(-1px);
+}
+
+#barcode {
+    margin: 20px auto;
+    display: block;
+    border: 1px solid #555555; /* Medium gray border for barcode */
+    border-radius: 5px;
+}
+
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Almost black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.fullscreen img {
+    max-width: 90%;
+    max-height: 90%;
+    border: 5px solid #ffffff; /* White border for fullscreen image */
+    border-radius: 10px;
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background-color: #e74c3c; /* Red color for close button */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
