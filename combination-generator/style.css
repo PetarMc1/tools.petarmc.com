@@ -6,25 +6,29 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(to right, #ff6b6b, #556270);
-    color: #000000;
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Updated gradient */
+    color: #ffffff; /* Ensures high contrast for readability */
 }
 
 .container {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.85); /* Less transparency for readability */
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
     max-width: 600px;
     max-height: 80vh;
     overflow: auto;
+    z-index: 1;
 }
 
 h1 {
-    color: #000000;
+    color: #333333; /* Darker text color for header */
     margin-bottom: 30px;
     font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .label-container {
@@ -33,9 +37,12 @@ h1 {
 
 label {
     display: inline-block;
-    text-align: left; 
-    width: 260px;
-    margin-right: 5px; 
+    text-align: left;
+    width: 240px;
+    margin-right: 15px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #333333;
 }
 
 input, button {
@@ -45,17 +52,34 @@ input, button {
     border: none;
     border-radius: 5px;
     outline: none;
+    transition: all 0.3s ease;
+}
+
+input {
+    background-color: #f9f9f9;
+    color: #333333;
+    border: 1px solid #ddd;
+}
+
+input:focus {
+    border-color: #ff6b6b; /* Accent color on focus */
+    box-shadow: 0 0 5px rgba(255, 107, 107, 0.6);
 }
 
 button {
     cursor: pointer;
     background-color: #3498db;
     color: #ffffff;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
     background-color: #2980b9;
+    transform: translateY(-2px); /* Slight elevation effect */
+}
+
+button:active {
+    transform: translateY(1px); /* Button pressed effect */
 }
 
 #generateButton {
@@ -76,6 +100,7 @@ button:hover {
     text-align: center;
     margin: 0 auto;
     max-height: 200px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Subtle shadow for visibility */
 }
 
 #copiedMessage {
@@ -88,6 +113,8 @@ button:hover {
     border-radius: 10px;
     font-size: 24px;
     transition: top 0.5s ease;
+    background-color: #2ecc71; /* Green success message */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect for the message */
 }
 
 .button-container {
@@ -104,12 +131,18 @@ button:hover {
     background-color: #e67e22;
     color: #ffffff;
     border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
 #copyButton:hover, #downloadButton:hover {
     background-color: #d35400;
+    transform: translateY(-2px); /* Elevation effect */
 }
 
-#generate-button{
+#copyButton:active, #downloadButton:active {
+    transform: translateY(1px); /* Pressed effect */
+}
+
+#generate-button {
     margin-bottom: 20px;
 }

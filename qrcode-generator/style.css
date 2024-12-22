@@ -1,20 +1,21 @@
 body {
-    background-color: #2c3e50;
+    background: linear-gradient(135deg, #00b4d8, #0083b0); /* Blue gradient for a fresh look */
     color: #ecf0f1;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 20px;
-    height: auto;
+    height: 100vh;
 }
 
 .container {
-    background-color: #34495e;
+    padding-top: 10%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background with some transparency for a modern feel */
     border-radius: 20px;
     padding: 30px;
     max-width: 90%;
     width: 500px;
     margin: 0 auto;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
     overflow: hidden;
 }
 
